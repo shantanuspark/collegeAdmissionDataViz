@@ -10,7 +10,7 @@
     "local-tunnel": "lt --port 8888",
     "share": "npm-run-all --parallel open:src local-tunnel"
   },
-  "author": "Kevin Smith",
+  "author": "Shantanu Deshmukh",
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
