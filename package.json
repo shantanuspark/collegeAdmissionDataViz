@@ -10,10 +10,9 @@
     "local-tunnel": "lt --port 8888",
     "share": "npm-run-all --parallel open:src local-tunnel"
   },
-  "author": "Shantanu Deshmukh",
-  "license": "",
+  "author": "Kevin Smith",
+  "license": "MIT",
   "dependencies": {
-    "babel-cli": "^6.16.0",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
