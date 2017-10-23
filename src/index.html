@@ -8,6 +8,15 @@
         <div class="container-fluid">
             <nav id="navbar-example2" class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="#">College Admission's Data Visualization</a>
+            <div class="btn-group">
+                <button class="btn btn-info btn-sm dropdown-toggle yearTitle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Year : 2015
+                </button>
+                <div class="dropdown-menu ">
+                    <a class="dropdown-item yearSelection" id="year2015" href="#" value="2015"> 2015</a>
+                    <a class="dropdown-item yearSelection" id="year2016" href="#" value="2016"> 2016</a>
+                </div>
+            </div>
             <ul class="nav nav-pills">
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">In State Tution</a>
@@ -53,6 +62,11 @@
                 });
                 $('.popover-dismiss').popover({
                 trigger: 'focus'
+                });
+                $(function(){
+                    $(".yearSelection").on('click', function(){
+                        $(".yearTitle").text("Year : "+$(this).text());
+                    });
                 });
             </script>
         </div>

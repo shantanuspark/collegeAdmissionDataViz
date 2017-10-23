@@ -6,12 +6,18 @@ var width = d3.select('.container-fluid').node().getBoundingClientRect().width -
 var height = 600
 
 //Creating Canvas
+function createCanvas(){
 var canvas = d3.select('.container-fluid')
   .append('svg')
   .attr("width", width)
   .attr("height", height)
   .append('g')
+  .attr('class','forceDirectedGraph')
   .attr("transform", "translate(0,0)");
+ return canvas;
+}
+
+var canvas = createCanvas()
 
 //Importing Data        
 var data = require("./collegeData.csv");
@@ -29,6 +35,24 @@ var strokScale = d3.scaleSqrt()
   .domain([1, 36])
   .range([1, 100]);
 
+drawGraph(data);
+
+d3.select("#year2015")
+  .on("click", function(){
+    d3.select(".forceDirectedGraph")
+      .html("")
+    data = require("./collegeDataMini.csv")
+    drawGraph(data)
+  });
+
+d3.select("#year2016")
+  .on("click", function(){
+    d3.select(".forceDirectedGraph")
+      .html("")
+    data = require("./collegeData.csv")
+    drawGraph(data)
+  });  
+function drawGraph(data) { 
 //Creating forces
 
 //force for instate tution < 10000
@@ -230,6 +254,9 @@ function ticked() {
 
 }
 
+}
+
+
 // Legend for SAT Score
 var svg = d3.select(".legend");
 svg.attr("width", d3.select('.container-fluid').node().getBoundingClientRect().width - 50)
@@ -284,7 +311,7 @@ actLegend
   .append("circle")
   .attr("r", radiusScale(0.9))
   .attr("transform", "translate(" + radiusScale(0.9) + ", " + yPadding / 2 + ")")
-  .attr("fill", "rgb(46, 73, 123)")
+  .attr("fill", "rgb(64, 154, 102)")
   .attr("opacity", "0.9")
   .attr("stroke", "black")
   .attr("stroke-width", "5")
@@ -304,7 +331,7 @@ actLegend
   .append("circle")
   .attr("r", radiusScale(0.9))
   .attr("transform", "translate(" + (radiusScale(0.9) * 3 + 10) + ", " + yPadding / 2 + ")")
-  .attr("fill", "rgb(46, 73, 123)")
+  .attr("fill", "rgb(64, 154, 102)")
   .attr("opacity", "0.9")
   .attr("stroke", "black")
   .attr("stroke-width", "5")
@@ -324,7 +351,7 @@ actLegend
   .append("circle")
   .attr("r", radiusScale(0.9))
   .attr("transform", "translate(" + (radiusScale(0.9) * 5 + 20) + ", " + yPadding / 2 + ")")
-  .attr("fill", "rgb(46, 73, 123)")
+  .attr("fill", "rgb(64, 154, 102)")
   .attr("opacity", "0.9")
   .attr("stroke", "black")
   .attr("stroke-width", "5")
@@ -345,7 +372,7 @@ actLegend
   .append("circle")
   .attr("r", radiusScale(0.9))
   .attr("transform", "translate(" + (radiusScale(0.9) * 7 + 30) + ", " + yPadding / 2 + ")")
-  .attr("fill", "rgb(46, 73, 123)")
+  .attr("fill", "rgb(64, 154, 102)")
   .attr("opacity", "0.9")
   .attr("stroke", "black")
   .attr("stroke-width", "5")
