@@ -11,7 +11,7 @@
     "share": "npm-run-all --parallel open:src local-tunnel"
   },
   "author": "Shantanu Deshmukh",
-  "license": "MIT",
+  "license": "",
   "dependencies": {
     "babel-cli": "^6.16.0",
     "whatwg-fetch": "1.0.0"
