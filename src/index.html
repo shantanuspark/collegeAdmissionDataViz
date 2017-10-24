@@ -10,11 +10,22 @@
             <a class="navbar-brand" href="#">College Admission's Data Visualization</a>
             <div class="btn-group">
                 <button class="btn btn-info btn-sm dropdown-toggle yearTitle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Year : 2015
+                    Year : 2015-16
                 </button>
-                <div class="dropdown-menu ">
-                    <a class="dropdown-item yearSelection" id="year2015" href="#" value="2015"> 2015</a>
-                    <a class="dropdown-item yearSelection" id="year2016" href="#" value="2016"> 2016</a>
+                <div class="dropdown-menu initializePopover">
+                    <a class="dropdown-item yearSelection" id="year2016" href="#" value="2015"> 2015-16</a>
+                    <a class="dropdown-item yearSelection" id="year2015" href="#" value="2014"> 2014-15</a>
+                    <a class="dropdown-item yearSelection" id="year2014" href="#" value="2013"> 2013-14</a>
+                    <a class="dropdown-item yearSelection" id="year2013" href="#" value="2012"> 2012-13</a>
+                    <a class="dropdown-item yearSelection" id="year2012" href="#" value="2011"> 2011-12</a>
+                    <a class="dropdown-item yearSelection" id="year2011" href="#" value="2010"> 2010-11</a>
+                    <a class="dropdown-item yearSelection" id="year2010" href="#" value="2009"> 2009-10</a>
+                    <a class="dropdown-item yearSelection" id="year2009" href="#" value="2008"> 2008-09</a>
+                    <a class="dropdown-item yearSelection" id="year2008" href="#" value="2007"> 2007-08</a>
+                    <a class="dropdown-item yearSelection" id="year2007" href="#" value="2006"> 2006-07</a>
+                    <a class="dropdown-item yearSelection" id="year2006" href="#" value="2005"> 2005-06</a>
+                    <a class="dropdown-item yearSelection" id="year2005" href="#" value="2004"> 2004-05</a>
+                    <a class="dropdown-item yearSelection" id="year2004" href="#" value="2003"> 2003-04</a>
                 </div>
             </div>
             <ul class="nav nav-pills">
@@ -56,7 +67,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
             <script>
-              //Bootstrap tool tips
+                //Bootstrap tool tips
                 $(function () {
                 $('[data-toggle="popover"]').popover()
                 });
@@ -67,6 +78,10 @@
                     $(".yearSelection").on('click', function(){
                         $(".yearTitle").text("Year : "+$(this).text());
                     });
+                });
+                //Relitializing popover on click
+                $('.initializePopover').click(function(){
+                    $('[data-toggle="popover"]').popover()
                 });
             </script>
         </div>

@@ -11,16 +11,16 @@ var canvas = d3.select('.container-fluid')
   .append('svg')
   .attr("width", width)
   .attr("height", height)
+  .attr('class','forceDirectedGraphSVG')
   .append('g')
-  .attr('class','forceDirectedGraph')
-  .attr("transform", "translate(0,0)");
+  .attr('class','forceDirectedGraphG')
  return canvas;
 }
 
 var canvas = createCanvas()
 
-//Importing Data        
-var data = require("./collegeData.csv");
+//Importing Data of year 15-16  
+var data = require("./data/2015_16.csv");
 
 //Creating 3 scales for raduis, color and stroke
 var radiusScale = d3.scaleSqrt()
@@ -37,24 +37,105 @@ var strokScale = d3.scaleSqrt()
 
 drawGraph(data);
 
-d3.select("#year2015")
+function clearGraph(){
+  d3.select('.forceDirectedGraphG').html("");
+}
+
+//Changin data on year selection
+d3.select("#year2016")
   .on("click", function(){
-    d3.select(".forceDirectedGraph")
-      .html("")
-    data = require("./collegeDataMini.csv")
+    clearGraph()
+    data = require("./data/2015_16.csv")
     drawGraph(data)
   });
 
-d3.select("#year2016")
+d3.select("#year2015")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2014_15.csv")
+    drawGraph(data)
+  });  
+
+d3.select("#year2014")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2013_14.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2013")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2012_13.csv")
+    drawGraph(data)
+  });   
+
+d3.select("#year2012")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2011_12.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2011")
   .on("click", function(){
     d3.select(".forceDirectedGraph")
       .html("")
-    data = require("./collegeData.csv")
+    data = require("./data/2010_11.csv")
     drawGraph(data)
-  });  
-function drawGraph(data) { 
-//Creating forces
+  }); 
 
+  d3.select("#year2010")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2009_10.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2009")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2008_09.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2008")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2007_08.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2007")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2006_07.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2006")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2005_06.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2005")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2004_05.csv")
+    drawGraph(data)
+  }); 
+
+  d3.select("#year2004")
+  .on("click", function(){
+    clearGraph()
+    data = require("./data/2003_04.csv")
+    drawGraph(data)
+  }); 
+
+ //Creating forces
+function drawGraph(data) { 
 //force for instate tution < 10000
 var forceXSeparate = d3.forceX(function (d) {
   if (d.TUITIONFEE_IN < 10000)
@@ -166,8 +247,12 @@ var circles = canvas.selectAll(".inst")
       .style("opacity", 0);
   })
   .attr("data-toggle", "popover")
-  .attr("title", function (d) {
-    return "<a target='_blank' href='http://" + d.INSTURL + "'>" + d.INSTNM + "</a>"
+  .attr("title","")
+  .attr("data-original-title", function (d) {
+    if(d.INSTURL != 'NULL')
+      return "<a target='_blank' href='http://" + d.INSTURL + "'>" + d.INSTNM + "</a>"
+    else 
+      return "<a href='#'>"+d.INSTNM+"</a>"
   })
   .attr("data-content", function (d) {
     return '<ul class="list-group"><li class="list-group-item d-flex justify-content-between align-items-center">Admission Rate<span class="badge badge-primary badge-pill">' + Math.round(d.ADM_RATE_ALL * 100) / 100 + '</span></li><li class="list-group-item d-flex justify-content-between align-items-center">Average SAT Score<span class="badge badge-primary badge-pill">' + d.SAT_AVG_ALL + '</span></li><li class="list-group-item d-flex justify-content-between align-items-center">Average ACT Score<span class="badge badge-primary badge-pill">' + d.ACTCMMID + '</span></li><li class="list-group-item d-flex justify-content-between align-items-center">In State Tution<span class="badge badge-primary badge-pill">$ ' + d.TUITIONFEE_IN + '</span></li><li class="list-group-item d-flex justify-content-between align-items-center">Out of State Tution<span class="badge badge-primary badge-pill">$ ' + d.TUITIONFEE_OUT + '</span></li></ul>';
@@ -176,7 +261,6 @@ var circles = canvas.selectAll(".inst")
   .attr("data-html", "true")
   .attr("role", "button")
   .attr("tabindex", "0");
-
 //tool tip div
 var div = d3.select("body").append("div")
   .attr("class", "tooltip")
